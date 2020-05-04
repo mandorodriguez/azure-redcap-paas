@@ -143,7 +143,7 @@
     },
     "repoURL": {
       "type": "string",
-      "defaultValue": "https://github.com/microsoft/Azure-REDCap-PaaS.git",
+      "defaultValue": "https://github.com/mandorodriguez/Azure-REDCap-PaaS.git",
       "metadata": {
         "description": "The path to the deployment source files on GitHub"
       }
