@@ -23,8 +23,11 @@ function Main {
 		Log("Checking ZIP file name and version")
 
 		$filename = GetFileName($zipUri)
+
+		if ($filename) { Log("filename equals" + $filename) }  else Log("filename is null")
+
 		$filePath = "$path\$filename"
-        $version = $filename.Replace(".zip","")
+	        $version = $filename.Replace(".zip","")
 		$dbver = $version.Replace("redcap","")
 
         Log("Processing $version")
