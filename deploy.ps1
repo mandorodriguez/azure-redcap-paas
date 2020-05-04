@@ -26,7 +26,7 @@ function Main {
 
 		$filename = GetFileName($zipUri)
 
-		if ($filename) { Log("filename equals" + $filename) }  else Log("filename is null")
+		if ($filename) { Log("filename equals" + $filename) }  else { Log("filename is null") }
 
 		$filePath = "$path\$filename"
 	        $version = $filename.Replace(".zip","")
@@ -40,7 +40,7 @@ function Main {
             # Download the ZIP file
             Invoke-WebRequest $zipUri -OutFile $filePath
 
-	    if ($filename) { Log("filename equals" + $filename) }  else Log("filename is null")
+	    if ($filename) { Log("filename equals" + $filename) }  else { Log("filename is null") }
 
             Log("Unzipping file")
             mkdir "$path\target" -ErrorAction SilentlyContinue
