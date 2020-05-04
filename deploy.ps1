@@ -78,13 +78,13 @@ function Main {
 			Log("Updating configuration in redcap_config")
 			UpdateConfig
 
-			Start-Sleep -s 20
+			# Start-Sleep -s 20
 			
 			# Setup Web Job
 			Log("Setting up web job")
 			SetupWebJob
 
-			Start-Sleep -s 20
+			# Start-Sleep -s 20
 			
 			# add web.config to clean up MIME types in IIS
 			Log("Copying web.config")
