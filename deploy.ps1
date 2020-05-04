@@ -19,6 +19,8 @@ Write-Output "loading functions"
 
 function Main {
     try {
+		Log("Starting forked deployment")
+		
 		Copy-Item -Path "$path\Files\AzDeployStatus.php" -Destination "$webRoot\AzDeployStatus.php"
 		Log("Checking ZIP file name and version")
 
