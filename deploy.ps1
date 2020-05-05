@@ -22,7 +22,7 @@ function Main {
 		Log("Starting forked deployment")
 		
 		Copy-Item -Path "$path\Files\AzDeployStatus.php" -Destination "$webRoot\AzDeployStatus.php"
-		Log("Checking ZIP file name and version")
+		Log("Checking ZIP file name and version: $zipUri")
 
 		$filename = GetFileName($zipUri)
 
@@ -240,7 +240,7 @@ function MoveFiles {
 }
 
 function GetFileName($Url) {
-	$res = Invoke-WebRequest -Method Head -Uri $Url -UseBasicParsing
+	$res = Invoke-WebRequest -UseBasicParsing -Method Head -Uri $Url -UseBasicParsing
 
 	$header = $res.Headers["content-disposition"]
 	if ($null -ne $header) {
