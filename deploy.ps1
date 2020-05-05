@@ -38,7 +38,11 @@ function Main {
             Log("Downloading $filename")
     
             # Download the ZIP file
-            Invoke-WebRequest $zipUri -OutFile $filePath -UseBasicParsing
+
+	    # - Invoke-WebRequest not present on azure.
+            # Invoke-WebRequest $zipUri -OutFile $filePath -UseBasicParsing
+	    
+	    (New-Object System.Net.WebClient).DownloadFile($zipUri, $filePath)
 
 	    if ($filename) { Log("filename equals" + $filename) }  else { Log("filename is null") }
 
