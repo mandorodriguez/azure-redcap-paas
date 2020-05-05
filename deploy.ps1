@@ -38,7 +38,7 @@ function Main {
             Log("Downloading $filename")
     
             # Download the ZIP file
-            Invoke-WebRequest $zipUri -OutFile $filePath
+            Invoke-WebRequest $zipUri -OutFile $filePath -UseBasicParsing
 
 	    if ($filename) { Log("filename equals" + $filename) }  else { Log("filename is null") }
 
@@ -240,7 +240,7 @@ function MoveFiles {
 }
 
 function GetFileName($Url) {
-	$res = Invoke-WebRequest -UseBasicParsing -Method Head -Uri $Url -UseBasicParsing
+	$res = Invoke-WebRequest -Method Head -Uri $Url -UseBasicParsing
 
 	$header = $res.Headers["content-disposition"]
 	if ($null -ne $header) {
