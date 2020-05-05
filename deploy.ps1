@@ -244,19 +244,10 @@ function MoveFiles {
 }
 
 function GetFileName($Url) {
-	$res = Invoke-WebRequest -Method Head -Uri $Url -UseBasicParsing
 
-	$header = $res.Headers["content-disposition"]
-	if ($null -ne $header) {
-		$filename = [System.Net.Http.Headers.ContentDispositionHeaderValue]::Parse($header).Filename
-		if ($filename.IndexOf('"') -gt -1) {
-			$filename = ConvertFrom-Json $filename
-		}
-	} else {
-		$header = $res.Headers.Keys | Where-Object { if($_.contains("filename")){$_}}
-		$filename = $res.Headers[$header]
-	}
-	return $filename
+    $filename =  [System.IO.Path]::GetFileName($Url) 
+
+    return $filename
 }
 
 function Log($entry) {
