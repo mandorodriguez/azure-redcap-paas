@@ -212,23 +212,32 @@ function UpdateDBConnection {
 }
 
 function GetSQLSchema {
-	$body = @{
-		"version" = $dbver
-	}
-	$res = Invoke-WebRequest `
-		-UseBasicParsing `
-		-Uri "https://$($env:WEBSITE_HOSTNAME)/install.php" `
-		-Body $body `
-		-Method Post
+	# $body = @{
+	# 	"version" = $dbver
+	# }
+	# $res = Invoke-WebRequest `
+	# 	-UseBasicParsing `
+	# 	-Uri "https://$($env:WEBSITE_HOSTNAME)/install.php" `
+	# 	-Body $body `
+	# 	-Method Post
 
-	$str = $res.Content
+	$res = (New-Object System.Net.WebClient).DownloadString("https://$($env:WEBSITE_HOSTNAME)/install.php")
+
+	Log("Getting SQL schema from https://$($env:WEBSITE_HOSTNAME)/install.php")
+	
+	$str = $res
 	$start = $str.IndexOf("<textarea ")
 	$end = $str.IndexOf("</textarea>")
 	$new = $str.substring($start, ($end - $start))
 	$sql = $new -replace("<textarea[^>]*>","")
 
 	#save the schema for posterity
+
 	$sql | Out-File schema.sql
+
+	Log("Saved schema in $PSScriptRoot/schema.sql")
+	Log("Returning SQL Schema from page for application")
+	
 	return $sql
 }
 
