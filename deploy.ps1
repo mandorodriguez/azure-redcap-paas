@@ -212,14 +212,6 @@ function UpdateDBConnection {
 }
 
 function GetSQLSchema {
-	# $body = @{
-	# 	"version" = $dbver
-	# }
-	# $res = Invoke-WebRequest `
-	# 	-UseBasicParsing `
-	# 	-Uri "https://$($env:WEBSITE_HOSTNAME)/install.php" `
-	# 	-Body $body `
-	# 	-Method Post
 
 	$res = (New-Object System.Net.WebClient).DownloadString("https://$($env:WEBSITE_HOSTNAME)/install.php")
 
